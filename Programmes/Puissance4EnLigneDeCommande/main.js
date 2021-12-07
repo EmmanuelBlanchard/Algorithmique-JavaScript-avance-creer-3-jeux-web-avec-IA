@@ -123,9 +123,9 @@ function verificationDiagonaleFinJeu(joueur) {
     for(var i = nombreLignes-1; i >= 3; i--) {
         for(var j = 0; j < nombreColonnes; j++) {
             if( puissance4[i][j] === joueur &&
-                puissance4[i-1][j] === joueur &&
-                puissance4[i-2][j] === joueur &&
-                puissance4[i-3][j] === joueur
+                puissance4[i-1][j+1] === joueur &&
+                puissance4[i-2][j+2] === joueur &&
+                puissance4[i-3][j+3] === joueur
                 ) {
                     return true;
             }
