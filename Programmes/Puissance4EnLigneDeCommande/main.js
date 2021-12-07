@@ -10,6 +10,32 @@ puissance4[3][3] = 1;
 puissance4[4][4] = 2;
 afficherPuissance4(puissance4,joueur1Caractere,joueur2Caractere);
 
+/*
+Tant que pasTerminé
+    jouer(Joueur1)
+    jouer(Joueur2)
+Fin Tant Que
+*/
+
+while(true) {
+    if(jouerCase(1)) {
+        console.log("Joueur 1 a gagné");
+        break;
+    }
+    if(jouerCase(2)) {
+        console.log("Joueur 2 a gagné");
+        break;
+    }
+}
+
+function jouerCase(joueur) {
+    console.log("Le joueur %d joue", joueur);
+    if(joueur === 2) {
+        return true;
+    }
+    return false;
+}
+
 /**
  * Permet d'initialiser un tableau de tableau en fonction d'un nombre de lignes et de colonnes passé en paramètre
  * @param {Number} nombreLignes 
