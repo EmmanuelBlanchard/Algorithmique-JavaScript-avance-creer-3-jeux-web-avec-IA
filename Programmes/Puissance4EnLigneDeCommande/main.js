@@ -28,7 +28,7 @@ while(true) {
 function jouerCase(joueur) {
     var ligneVide = -1;
     var colonne = -1;
-    while(!ligneVide === -1 || colonne <= 0 || colonne > 7) {
+    while(ligneVide === -1 || colonne <= 0 || colonne > 7) {
         console.log("Choisir une colonne à un emplacement vide");
         var colonne = saisirColonne();
         var ligneVide = retournerCaseVideColonne(colonne);
@@ -45,12 +45,29 @@ function saisirColonne() {
     return parseInt(readline.question("Quelle colonne ? "));
 }
 
+/**
+ * Fonction permettant de retourner la premiere ligne d'une colonne
+ * @param {Number} colonne Retourne -1 si la colonne est pleine
+ */
 function retournerCaseVideColonne(colonne) {
-    return 5;
+    // Si la colonne est pleine on retourne -1
+    for(var i = nombreLignes-1; i >= 0; i--) {
+        if(verificationCaseVide(i,colonne)) return i;
+    }
+    return -1;
+}
+
+/**
+ * Fonction permettant de retourner si une cellule est vide ou pas (retourne true / false)
+ * @param {Number} ligne 
+ * @param {Number} colonne 
+ */
+function verificationCaseVide(ligne,colonne) {
+    return puissance4[ligne][colonne-1] === 0;
 }
 
 function verificationFinJeu() {
-    return true;
+    return false;
 }
 
 /**
