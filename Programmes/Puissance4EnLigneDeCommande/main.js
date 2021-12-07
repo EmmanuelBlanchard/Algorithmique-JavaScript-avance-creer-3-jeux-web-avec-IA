@@ -3,8 +3,10 @@ var readline = require("readline-sync");
 var puissance4 = [];
 var nombreColonnes = 7;
 var nombreLignes = 6;
-var joueur1Caractere = "x";
-var joueur2Caractere = "o";
+var joueur1Caractere = choixCaractere(1);
+var joueur2Caractere = choixCaractere(2);
+
+introduction();
 
 puissance4 = initialiserTableauVide(nombreLignes,nombreColonnes,0);
 afficherPuissance4(puissance4,joueur1Caractere,joueur2Caractere);
@@ -18,6 +20,22 @@ while(true) {
         console.log("Joueur 2 a gagné");
         break;
     }
+}
+
+function introduction() {
+    var texte = "***********************************************************************\n";
+    texte += "********************** Bienvenue sur Puissance 4 **********************\n";
+    texte += "***********************************************************************\n";
+    console.log(texte);
+}
+
+function choixCaractere(idJoueur) {
+    var texte = "Veuillez choisir le caractere que vous voulez pour joueur " + idJoueur + " : ";
+    return saisieString(texte);
+}
+
+function saisieString(texte) {
+    return readline.question(texte);
 }
 
 /**
@@ -42,7 +60,7 @@ function jouerCase(joueur) {
  * Fonction permettant de saisir une colonne
  */
 function saisirColonne() {
-    return parseInt(readline.question("Quelle colonne ? "));
+    return parseInt(saisieString("Quelle colonne ? "));
 }
 
 /**
