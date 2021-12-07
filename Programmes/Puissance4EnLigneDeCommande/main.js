@@ -1,12 +1,14 @@
-console.log("coucou");
-
 var puissance4 = [];
 var nombreColonnes = 7;
 var nombreLignes = 6;
+var joueur1Caractere = "x";
+var joueur2Caractere = "o";
 
 puissance4 = initialiserTableauVide(nombreLignes,nombreColonnes,0);
-
-console.log(puissance4);
+afficherPuissance4(puissance4,joueur1Caractere,joueur2Caractere);
+puissance4[3][3] = 1;
+puissance4[4][4] = 2;
+afficherPuissance4(puissance4,joueur1Caractere,joueur2Caractere);
 
 /**
  * Permet d'initialiser un tableau de tableau en fonction d'un nombre de lignes et de colonnes passé en paramètre
@@ -24,4 +26,29 @@ function initialiserTableauVide(nombreLignes,nombreColonnes,caractere = '') {
         tableau.push(ligne);
     }
     return tableau;
+}
+
+/**
+ * Permet d'afficher un tableau de puissance 4 en fonction d'un nombre de lignes et de colonnes passé en paramètre
+ * @param {Array <String>} tableau Tableau de caractères
+ * @param {String} joueur1Caractere Le caractere du joueur1
+ * @param {String} joueur2Caractere Le caractere du joueur2
+ */
+function afficherPuissance4(tableau,joueur1Caractere,joueur2Caractere) {
+    for(var i = 0; i < tableau.length ; i++) {
+        var ligne = "";
+        for(var j = 0; j < tableau[i].length ; j++) {
+            ligne += "| ";
+            if(tableau[i][j] === 0) {
+                ligne += "_";
+            } else if(tableau[i][j] === 1) {
+                ligne += joueur1Caractere;
+            } else if(tableau[i][j] === 2) {
+                ligne += joueur2Caractere;
+            }
+            ligne += " |";
+        }
+        console.log(ligne);
+    }
+    
 }
