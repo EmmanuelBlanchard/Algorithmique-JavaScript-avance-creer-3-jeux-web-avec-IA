@@ -1,3 +1,5 @@
+var readline = require("readline-sync");
+
 var puissance4 = [];
 var nombreColonnes = 7;
 var nombreLignes = 6;
@@ -6,16 +8,6 @@ var joueur2Caractere = "o";
 
 puissance4 = initialiserTableauVide(nombreLignes,nombreColonnes,0);
 afficherPuissance4(puissance4,joueur1Caractere,joueur2Caractere);
-puissance4[3][3] = 1;
-puissance4[4][4] = 2;
-afficherPuissance4(puissance4,joueur1Caractere,joueur2Caractere);
-
-/*
-Tant que pasTerminé
-    jouer(Joueur1)
-    jouer(Joueur2)
-Fin Tant Que
-*/
 
 while(true) {
     if(jouerCase(1)) {
@@ -28,12 +20,37 @@ while(true) {
     }
 }
 
+/**
+ * Fonction permettant à un joueur de jouer une case
+ * Retourne true si le joueur a gagné
+ * @param {Number} joueur 
+ */
 function jouerCase(joueur) {
-    console.log("Le joueur %d joue", joueur);
-    if(joueur === 2) {
-        return true;
+    var ligneVide = -1;
+    var colonne = -1;
+    while(!ligneVide === -1 || colonne <= 0 || colonne > 7) {
+        console.log("Choisir une colonne à un emplacement vide");
+        var colonne = saisirColonne();
+        var ligneVide = retournerCaseVideColonne(colonne);
     }
-    return false;
+    puissance4[ligneVide][colonne-1] = joueur;
+    afficherPuissance4(puissance4,joueur1Caractere,joueur2Caractere);
+    return verificationFinJeu();
+}
+
+/**
+ * Fonction permettant de saisir une colonne
+ */
+function saisirColonne() {
+    return parseInt(readline.question("Quelle colonne ? "));
+}
+
+function retournerCaseVideColonne(colonne) {
+    return 5;
+}
+
+function verificationFinJeu() {
+    return true;
 }
 
 /**
