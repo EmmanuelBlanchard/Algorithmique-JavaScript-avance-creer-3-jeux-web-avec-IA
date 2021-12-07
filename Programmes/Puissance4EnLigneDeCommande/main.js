@@ -35,7 +35,7 @@ function jouerCase(joueur) {
     }
     puissance4[ligneVide][colonne-1] = joueur;
     afficherPuissance4(puissance4,joueur1Caractere,joueur2Caractere);
-    return verificationFinJeu();
+    return verificationFinJeu(joueur);
 }
 
 /**
@@ -66,8 +66,42 @@ function verificationCaseVide(ligne,colonne) {
     return puissance4[ligne][colonne-1] === 0;
 }
 
-function verificationFinJeu() {
+/**
+ * Fonction permettant de verifier si un joueur a gagné
+ * @param {Number} joueur 
+ */
+function verificationFinJeu(joueur) {
+    if(verificationLigneFinJeu(joueur) || verificationColonneFinJeu(joueur) || verificationDiagonaleFinJeu(joueur)) {
+        return true;
+    }
     return false;
+}
+
+/**
+ * Fonction permettant de verifier si un joueur a gagné sur une ligne
+ * @param {Number} joueur 
+ */
+function verificationLigneFinJeu(joueur) {
+    for(var i = nombreLignes-1; i >= 0; i--) {
+        for(var j = 0; j < nombreColonnes-3; j++) {
+            if( puissance4[i][j] === joueur &&
+                puissance4[i][j+1] === joueur &&
+                puissance4[i][j+2] === joueur &&
+                puissance4[i][j+3] === joueur
+                ) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function verificationColonneFinJeu(joueur) {
+    
+}
+
+function verificationDiagonaleFinJeu(joueur) {
+    
 }
 
 /**
