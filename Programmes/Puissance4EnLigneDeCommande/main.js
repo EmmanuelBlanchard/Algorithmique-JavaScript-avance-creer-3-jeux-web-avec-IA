@@ -96,12 +96,49 @@ function verificationLigneFinJeu(joueur) {
     return false;
 }
 
+/**
+ * Fonction permettant de verifier si un joueur a gagné sur une colonne
+ * @param {Number} joueur 
+ */
 function verificationColonneFinJeu(joueur) {
-    
+    for(var i = 0; i < nombreColonnes; i++) {
+        for(var j = nombreLignes-4; j >= 0; j--) {
+            if( puissance4[j][i] === joueur &&
+                puissance4[j+1][i] === joueur &&
+                puissance4[j+2][i] === joueur &&
+                puissance4[j+3][i] === joueur
+                ) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
+/**
+ * Fonction permettant de verifier si un joueur a gagné sur une diagonale
+ * @param {Number} joueur 
+ */
 function verificationDiagonaleFinJeu(joueur) {
-    
+    for(var i = nombreLignes-1; i >= 3; i--) {
+        for(var j = 0; j < nombreColonnes; j++) {
+            if( puissance4[i][j] === joueur &&
+                puissance4[i-1][j] === joueur &&
+                puissance4[i-2][j] === joueur &&
+                puissance4[i-3][j] === joueur
+                ) {
+                    return true;
+            }
+            if( puissance4[i][j] === joueur &&
+                puissance4[i-1][j-1] === joueur &&
+                puissance4[i-2][j-2] === joueur &&
+                puissance4[i-3][j-3] === joueur
+                ) {
+                    return true;
+            }
+        }
+    }
+    return false;
 }
 
 /**
