@@ -11,12 +11,19 @@ var pointJoueur2 = 0;
 var isIAON = false;
 
 initialisationTableau();
+// placeForTest(0);
+// placeForTest(4);
+// placeForTest(0);
+// placeForTest(2);
+// placeForTest(0);
+// placeForTest(3);
+
 placeForTest(0);
-placeForTest(4);
-placeForTest(0);
-placeForTest(2);
-placeForTest(0);
+placeForTest(1);
 placeForTest(3);
+placeForTest(1);
+placeForTest(0);
+placeForTest(1);
 
 function startIA() {
     isIAON = !isIAON;
