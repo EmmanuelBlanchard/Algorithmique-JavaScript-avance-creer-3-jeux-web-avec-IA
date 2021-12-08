@@ -36,20 +36,20 @@ var jeu = {
                 content += "</tr>";
             }
             content += "<tr>";
-                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(1)">Colonne 1</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(2)">Colonne 2</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(3)">Colonne 3</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(4)">Colonne 4</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(5)">Colonne 5</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(6)">Colonne 6</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(7)">Colonne 7</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(0)">Colonne 1</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(1)">Colonne 2</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(2)">Colonne 3</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(3)">Colonne 4</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(4)">Colonne 5</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(5)">Colonne 6</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(6)">Colonne 7</button></td>';
             content += "</tr>";
         content += "</table>";
         jeu.innerHTML = content;
     },
 
     jouerCase : function(joueur,ligne,colonne) {
-        this.puissance4[ligne][colonne-1] = joueur;
+        this.puissance4[ligne][colonne] = joueur;
     },
 
     /**
@@ -70,7 +70,7 @@ var jeu = {
      * @param {Number} colonne 
      */
     verificationCaseVide : function(ligne,colonne) {
-        return this.puissance4[ligne][colonne-1] === 0;
+        return this.puissance4[ligne][colonne] === 0;
     },
 
     /**

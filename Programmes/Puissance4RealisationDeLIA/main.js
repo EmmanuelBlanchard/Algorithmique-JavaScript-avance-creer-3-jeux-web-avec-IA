@@ -11,6 +11,12 @@ var pointJoueur2 = 0;
 var isIAON = false;
 
 initialisationTableau();
+placeForTest(0);
+placeForTest(1);
+placeForTest(0);
+placeForTest(2);
+placeForTest(0);
+placeForTest(3);
 
 function startIA() {
     isIAON = !isIAON;
@@ -22,6 +28,10 @@ function jouer(colonne) {
         colonneIA = ia.choixColonne();
         jouerCase(colonneIA);
     }
+}
+
+function placeForTest(colonne) {
+    jouer(colonne);
 }
 
 function jouerCase(colonne) {
