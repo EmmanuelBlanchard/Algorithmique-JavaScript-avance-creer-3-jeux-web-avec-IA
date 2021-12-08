@@ -18,21 +18,44 @@ var jeu = {
      * Permet d'afficher un tableau de puissance 4 
      */
     afficherPuissance4 : function() {
-        for(var i = 0; i < this.puissance4.length ; i++) {
-            var ligne = "";
-            for(var j = 0; j < this.puissance4[i].length ; j++) {
-                ligne += "| ";
-                if(this.puissance4[i][j] === 0) {
-                    ligne += "_";
-                } else if(this.puissance4[i][j] === 1) {
-                    ligne += this.joueur1Caractere;
-                } else if(this.puissance4[i][j] === 2) {
-                    ligne += this.joueur2Caractere;
+        const jeu = document.querySelector("#jeu");
+        jeu.innerHTML = "";
+        
+        var content = "<table>";
+            for(var i = 0; i < this.nombreLignes; i++){
+                content += "<tr>";
+                for(var j = 0 ; j < this.nombreColonnes; j++){
+                    content += "<td class='border text-center' style='width:100px;height:100px'>";
+                    content += "</td>";
                 }
-                ligne += " |";
+                content += "</tr>";
             }
-            console.log(ligne);
-        }
+            content += "<tr>";
+                content += '<td><button type="button" class="btn btn-secondary">Colonne 1</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary">Colonne 2</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary">Colonne 3</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary">Colonne 4</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary">Colonne 5</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary">Colonne 6</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary">Colonne 7</button></td>';
+            content += "</tr>";
+        content += "</table>";
+        jeu.innerHTML = content;
+        // for(var i = 0; i < this.puissance4.length ; i++) {
+        //     var ligne = "";
+        //     for(var j = 0; j < this.puissance4[i].length ; j++) {
+        //         ligne += "| ";
+        //         if(this.puissance4[i][j] === 0) {
+        //             ligne += "_";
+        //         } else if(this.puissance4[i][j] === 1) {
+        //             ligne += this.joueur1Caractere;
+        //         } else if(this.puissance4[i][j] === 2) {
+        //             ligne += this.joueur2Caractere;
+        //         }
+        //         ligne += " |";
+        //     }
+        //     console.log(ligne);
+        // }
     },
 
     jouerCase : function(joueur,ligne,colonne) {
