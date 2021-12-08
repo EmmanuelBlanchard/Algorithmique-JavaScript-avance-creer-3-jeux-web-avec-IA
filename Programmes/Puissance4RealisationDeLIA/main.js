@@ -19,7 +19,7 @@ function startIA() {
 function jouer(colonne) {
     jouerCase(colonne);
     if(isIAON) {
-        colonneIA = 1;
+        colonneIA = ia.choixColonne();
         jouerCase(colonneIA);
     }
 }
