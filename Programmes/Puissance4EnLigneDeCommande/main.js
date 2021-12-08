@@ -1,15 +1,11 @@
-var readline = require("readline-sync");
-
-var puissance4 = [];
-var nombreColonnes = 7;
-var nombreLignes = 6;
-var joueur1Caractere = choixCaractere(1);
-var joueur2Caractere = choixCaractere(2);
+var toolbox = require("./toolbox.js");
+var jeu = require("./jeu.js");
 
 introduction();
-
-puissance4 = initialiserTableauVide(nombreLignes,nombreColonnes,0);
-afficherPuissance4(puissance4,joueur1Caractere,joueur2Caractere);
+jeu.joueur1Caractere = choixCaractere(1);
+jeu.joueur2Caractere = choixCaractere(2);
+jeu.initialisation();
+jeu.afficherPuissance4();
 
 while(true) {
     if(jouerCase(1)) {
@@ -31,11 +27,7 @@ function introduction() {
 
 function choixCaractere(idJoueur) {
     var texte = "Veuillez choisir le caractere que vous voulez pour joueur " + idJoueur + " : ";
-    return saisieString(texte);
-}
-
-function saisieString(texte) {
-    return readline.question(texte);
+    return toolbox.saisieString(texte);
 }
 
 /**
@@ -48,156 +40,11 @@ function jouerCase(joueur) {
     var colonne = -1;
     while(ligneVide === -1 || colonne <= 0 || colonne > 7) {
         console.log("Choisir une colonne à un emplacement vide");
-        var colonne = saisirColonne();
-        var ligneVide = retournerCaseVideColonne(colonne);
+        var colonne = jeu.saisirColonne();
+        var ligneVide = jeu.retournerCaseVideColonne(colonne);
     }
-    puissance4[ligneVide][colonne-1] = joueur;
-    afficherPuissance4(puissance4,joueur1Caractere,joueur2Caractere);
-    return verificationFinJeu(joueur);
+    jeu.jouerCase(joueur,ligneVide,colonne);
+    jeu.afficherPuissance4();
+    return jeu.verificationFinJeu(joueur);
 }
 
-/**
- * Fonction permettant de saisir une colonne
- */
-function saisirColonne() {
-    return parseInt(saisieString("Quelle colonne ? "));
-}
-
-/**
- * Fonction permettant de retourner la premiere ligne d'une colonne
- * @param {Number} colonne Retourne -1 si la colonne est pleine
- */
-function retournerCaseVideColonne(colonne) {
-    // Si la colonne est pleine on retourne -1
-    for(var i = nombreLignes-1; i >= 0; i--) {
-        if(verificationCaseVide(i,colonne)) return i;
-    }
-    return -1;
-}
-
-/**
- * Fonction permettant de retourner si une cellule est vide ou pas (retourne true / false)
- * @param {Number} ligne 
- * @param {Number} colonne 
- */
-function verificationCaseVide(ligne,colonne) {
-    return puissance4[ligne][colonne-1] === 0;
-}
-
-/**
- * Fonction permettant de verifier si un joueur a gagné
- * @param {Number} joueur 
- */
-function verificationFinJeu(joueur) {
-    if(verificationLigneFinJeu(joueur) || verificationColonneFinJeu(joueur) || verificationDiagonaleFinJeu(joueur)) {
-        return true;
-    }
-    return false;
-}
-
-/**
- * Fonction permettant de verifier si un joueur a gagné sur une ligne
- * @param {Number} joueur 
- */
-function verificationLigneFinJeu(joueur) {
-    for(var i = nombreLignes-1; i >= 0; i--) {
-        for(var j = 0; j < nombreColonnes-3; j++) {
-            if( puissance4[i][j] === joueur &&
-                puissance4[i][j+1] === joueur &&
-                puissance4[i][j+2] === joueur &&
-                puissance4[i][j+3] === joueur
-                ) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-/**
- * Fonction permettant de verifier si un joueur a gagné sur une colonne
- * @param {Number} joueur 
- */
-function verificationColonneFinJeu(joueur) {
-    for(var i = 0; i < nombreColonnes; i++) {
-        for(var j = nombreLignes-4; j >= 0; j--) {
-            if( puissance4[j][i] === joueur &&
-                puissance4[j+1][i] === joueur &&
-                puissance4[j+2][i] === joueur &&
-                puissance4[j+3][i] === joueur
-                ) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-/**
- * Fonction permettant de verifier si un joueur a gagné sur une diagonale
- * @param {Number} joueur 
- */
-function verificationDiagonaleFinJeu(joueur) {
-    for(var i = nombreLignes-1; i >= 3; i--) {
-        for(var j = 0; j < nombreColonnes; j++) {
-            if( puissance4[i][j] === joueur &&
-                puissance4[i-1][j+1] === joueur &&
-                puissance4[i-2][j+2] === joueur &&
-                puissance4[i-3][j+3] === joueur
-                ) {
-                    return true;
-            }
-            if( puissance4[i][j] === joueur &&
-                puissance4[i-1][j-1] === joueur &&
-                puissance4[i-2][j-2] === joueur &&
-                puissance4[i-3][j-3] === joueur
-                ) {
-                    return true;
-            }
-        }
-    }
-    return false;
-}
-
-/**
- * Permet d'initialiser un tableau de tableau en fonction d'un nombre de lignes et de colonnes passé en paramètre
- * @param {Number} nombreLignes 
- * @param {Number} nombreColonnes 
- * @param {*} caractere 
- */
-function initialiserTableauVide(nombreLignes,nombreColonnes,caractere = '') {
-    var tableau = [];
-    for(var i = 0; i < nombreLignes ; i++) {
-        var ligne = [];
-        for(var j = 0; j < nombreColonnes ; j++) {
-            ligne.push(caractere);
-        }
-        tableau.push(ligne);
-    }
-    return tableau;
-}
-
-/**
- * Permet d'afficher un tableau de puissance 4 en fonction d'un nombre de lignes et de colonnes passé en paramètre
- * @param {Array <String>} tableau Tableau de caractères
- * @param {String} joueur1Caractere Le caractere du joueur1
- * @param {String} joueur2Caractere Le caractere du joueur2
- */
-function afficherPuissance4(tableau,joueur1Caractere,joueur2Caractere) {
-    for(var i = 0; i < tableau.length ; i++) {
-        var ligne = "";
-        for(var j = 0; j < tableau[i].length ; j++) {
-            ligne += "| ";
-            if(tableau[i][j] === 0) {
-                ligne += "_";
-            } else if(tableau[i][j] === 1) {
-                ligne += joueur1Caractere;
-            } else if(tableau[i][j] === 2) {
-                ligne += joueur2Caractere;
-            }
-            ligne += " |";
-        }
-        console.log(ligne);
-    }
-    
-}
