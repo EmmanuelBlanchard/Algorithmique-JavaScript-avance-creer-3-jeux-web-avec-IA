@@ -32,6 +32,9 @@ function jouer(colonne) {
 }
 
 function initialisationTableau() {
+    finJeu = false;
+    joueurEnCours = 1;
+    alert.classList.add("d-none");
     var contentJoueur1 = "<img src='./images/J1.png' class='bg-danger rounded-circle' /><br />";
     contentJoueur1 += pointJoueur1; 
     messageJoueur1.innerHTML = contentJoueur1;
@@ -45,6 +48,13 @@ function initialisationTableau() {
 
 function gererFinJeu() {
     finJeu = true;
-    alert.innerHTML = "Fin du jeu";
+    var contentAlert = "Partie terminée, le gagnant est : Joueur " + joueurEnCours + " <br />";
+    contentAlert += '<button type="button" class="btn btn-secondary" onClick = initialisationTableau()>Recommencer</button>';
+    alert.innerHTML = contentAlert;
     alert.classList.remove("d-none");
+    if(joueurEnCours === 1) {
+        pointJoueur1++;
+    } else {
+        pointJoueur2++;
+    }
 }

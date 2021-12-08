@@ -1,5 +1,3 @@
-// var toolbox = require("./toolbox.js");
-
 var jeu = {
     puissance4 : [],
     nombreColonnes : 7,
@@ -157,4 +155,3 @@ var jeu = {
         return false;
     }
 }
-// module.exports = jeu;
