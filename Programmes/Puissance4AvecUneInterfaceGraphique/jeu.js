@@ -26,36 +26,28 @@ var jeu = {
                 content += "<tr>";
                 for(var j = 0 ; j < this.nombreColonnes; j++){
                     content += "<td class='border text-center' style='width:100px;height:100px'>";
+                    if(this.puissance4[i][j] === 0){
+                        content += "";
+                    } else if(this.puissance4[i][j] === 1){
+                        content += "<img src='./images/J1.png' class='bg-danger rounded-circle' />";
+                    } if(this.puissance4[i][j] === 2){
+                        content += "<img src='./images/J2.png' class='bg-info rounded-circle' />";
+                    }
                     content += "</td>";
                 }
                 content += "</tr>";
             }
             content += "<tr>";
-                content += '<td><button type="button" class="btn btn-secondary">Colonne 1</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary">Colonne 2</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary">Colonne 3</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary">Colonne 4</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary">Colonne 5</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary">Colonne 6</button></td>';
-                content += '<td><button type="button" class="btn btn-secondary">Colonne 7</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(1)">Colonne 1</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(2)">Colonne 2</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(3)">Colonne 3</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(4)">Colonne 4</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(5)">Colonne 5</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(6)">Colonne 6</button></td>';
+                content += '<td><button type="button" class="btn btn-secondary" onClick="jouer(7)">Colonne 7</button></td>';
             content += "</tr>";
         content += "</table>";
         jeu.innerHTML = content;
-        // for(var i = 0; i < this.puissance4.length ; i++) {
-        //     var ligne = "";
-        //     for(var j = 0; j < this.puissance4[i].length ; j++) {
-        //         ligne += "| ";
-        //         if(this.puissance4[i][j] === 0) {
-        //             ligne += "_";
-        //         } else if(this.puissance4[i][j] === 1) {
-        //             ligne += this.joueur1Caractere;
-        //         } else if(this.puissance4[i][j] === 2) {
-        //             ligne += this.joueur2Caractere;
-        //         }
-        //         ligne += " |";
-        //     }
-        //     console.log(ligne);
-        // }
     },
 
     jouerCase : function(joueur,ligne,colonne) {
@@ -66,7 +58,7 @@ var jeu = {
      * Fonction permettant de retourner la premiere ligne d'une colonne
      * @param {Number} colonne Retourne -1 si la colonne est pleine
      */
-    retournerCaseVideColonne : function(colonne) {
+     retournerLigneCaseVideColonne : function(colonne) {
         // Si la colonne est pleine on retourne -1
         for(var i = this.nombreLignes-1; i >= 0; i--) {
             if(this.verificationCaseVide(i,colonne)) return i;
