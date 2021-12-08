@@ -1,10 +1,14 @@
 const tour = document.querySelector("#tour");
 const alert = document.querySelector(".alert");
+const messageJoueur1 = document.querySelector("#joueur1");
+const messageJoueur2 = document.querySelector("#joueur2");
 var joueurEnCours = 1;
 var finJeu = false;
 
-jeu.initialisation();
-jeu.afficherPuissance4();
+var pointJoueur1 = 0;
+var pointJoueur2 = 0;
+
+initialisationTableau();
 
 function jouer(colonne) {
     if(!finJeu) {
@@ -25,6 +29,18 @@ function jouer(colonne) {
             }
         }
     }
+}
+
+function initialisationTableau() {
+    var contentJoueur1 = "<img src='./images/J1.png' class='bg-danger rounded-circle' /><br />";
+    contentJoueur1 += pointJoueur1; 
+    messageJoueur1.innerHTML = contentJoueur1;
+    var contentJoueur2 = "<img src='./images/J2.png' class='bg-info rounded-circle' /><br />";
+    contentJoueur2 += pointJoueur2; 
+    messageJoueur2.innerHTML = contentJoueur2;
+
+    jeu.initialisation();
+    jeu.afficherPuissance4();
 }
 
 function gererFinJeu() {
