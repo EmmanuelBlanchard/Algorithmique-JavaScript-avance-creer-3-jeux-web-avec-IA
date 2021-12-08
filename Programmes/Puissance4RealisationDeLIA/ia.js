@@ -1,8 +1,20 @@
 var ia = {
-    choixColonne() {
+    choixColonne(){
         var tabColonne = this.getTableauCellulesPossibles();
+        var meilleureColonne = 0;
+        var tabMeilleureColonne = [0];
+        for(var i=1;i < tabColonne.length; i++){
+            if(tabColonne[i]> tabColonne[meilleureColonne]){
+                meilleureColonne = i;
+                tabMeilleureColonne = new Array();
+                tabMeilleureColonne.push(i);
+            } else if(tabColonne[i] === tabColonne[meilleureColonne]){
+                tabMeilleureColonne.push(i);
+            }
+        }
         console.log(tabColonne);
-        return tabColonne[0];
+        console.log(tabMeilleureColonne);
+        return tabMeilleureColonne[Math.floor(Math.random() * tabMeilleureColonne.length)];
     },
 
     getTableauCellulesPossibles : function() {

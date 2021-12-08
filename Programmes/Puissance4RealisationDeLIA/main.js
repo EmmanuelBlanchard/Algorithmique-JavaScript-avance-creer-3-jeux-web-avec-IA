@@ -12,7 +12,7 @@ var isIAON = false;
 
 initialisationTableau();
 placeForTest(0);
-placeForTest(1);
+placeForTest(4);
 placeForTest(0);
 placeForTest(2);
 placeForTest(0);
