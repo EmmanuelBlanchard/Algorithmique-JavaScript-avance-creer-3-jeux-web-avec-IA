@@ -90,6 +90,45 @@ var ia = {
     },
 
     verificationGagnerDiagonale : function(ligne,colonne,joueur) {
-
+        var cpt=1;
+        if((ligne-1 >=0) && (colonne+1 <= jeu.nombreColonnes) && jeu.puissance4[ligne-1][colonne+1] === joueur) {
+            cpt++;
+            if((ligne-2 >=0) && (colonne+2 <= jeu.nombreColonnes) && jeu.puissance4[ligne-2][colonne+2] === joueur) {
+                cpt++;
+                if((ligne-3 >=0) && (colonne+3 <= jeu.nombreColonnes) && jeu.puissance4[ligne-3][colonne+3] === joueur) {
+                    cpt++;
+                }
+            }
+        }
+        if((ligne+1 < jeu.nombreLignes) && (colonne-1 >= 0) && jeu.puissance4[ligne+1][colonne-1] === joueur) {
+            cpt++;
+            if((ligne+2 < jeu.nombreLignes) && (colonne-2 >= 0) &&jeu.puissance4[ligne+2][colonne-2] === joueur){
+                cpt++;
+                if((ligne+3 < jeu.nombreLignes) && (colonne-3 >= 0) &&jeu.puissance4[ligne+3][colonne-3] === joueur){
+                    cpt++;
+                }
+            }
+        }
+        if(cpt>3) return true;
+        cpt=1;
+        if((ligne-1 >=0) && (colonne-1 >= 0) && jeu.puissance4[ligne-1][colonne-1] === joueur) {
+            cpt++;
+            if((ligne-2 >=0) && (colonne-2 >= 0) && jeu.puissance4[ligne-2][colonne-2] === joueur) {
+                cpt++;
+                if((ligne-3 >=0) && (colonne-3 >= 0) && jeu.puissance4[ligne-3][colonne-3] === joueur) {
+                    cpt++;
+                }
+            }
+        }
+        if((ligne+1 < jeu.nombreLignes) && (colonne+1 <= jeu.nombreColonnes) && jeu.puissance4[ligne+1][colonne+1] === joueur) {
+            cpt++;
+            if((ligne+2 < jeu.nombreLignes) && (colonne+2 <= jeu.nombreColonnes) &&jeu.puissance4[ligne+2][colonne+2] === joueur) {
+                cpt++;
+                if((ligne+3 < jeu.nombreLignes) && (colonne+3 <= jeu.nombreColonnes) &&jeu.puissance4[ligne+3][colonne+3] === joueur) {
+                    cpt++;
+                }
+            }
+        }
+        if(cpt>3) return true;
     }
 }

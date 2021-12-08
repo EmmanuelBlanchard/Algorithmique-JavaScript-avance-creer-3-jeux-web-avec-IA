@@ -11,6 +11,7 @@ var pointJoueur2 = 0;
 var isIAON = false;
 
 initialisationTableau();
+// Test Gagner en ligne
 // placeForTest(0);
 // placeForTest(4);
 // placeForTest(0);
@@ -18,12 +19,73 @@ initialisationTableau();
 // placeForTest(0);
 // placeForTest(3);
 
-placeForTest(0);
-placeForTest(1);
+// Test Gagner en colonne
+// placeForTest(0);
+// placeForTest(1);
+// placeForTest(3);
+// placeForTest(1);
+// placeForTest(0);
+// placeForTest(1);
+
+// Test Gagner en diagonale
+// placeForTest(0);
+// placeForTest(1);
+// placeForTest(2);
+// placeForTest(2);
+// placeForTest(3);
+// placeForTest(3);
+// placeForTest(4);
+// placeForTest(3);
+// placeForTest(4);
+// placeForTest(4);
+
+// Test2 Gagner en diagonale
+// placeForTest(0);
+// placeForTest(1);
+// placeForTest(2);
+// placeForTest(4);
+// placeForTest(3);
+// placeForTest(3);
+// placeForTest(4);
+// placeForTest(3);
+// placeForTest(4);
+// placeForTest(4);
+
+// Test3 Gagner en diagonale
+// placeForTest(0);
+// placeForTest(6);
+// placeForTest(2);
+// placeForTest(4);
+// placeForTest(3);
+// placeForTest(3);
+// placeForTest(4);
+// placeForTest(3);
+// placeForTest(4);
+// placeForTest(4);
+// placeForTest(5);
+// placeForTest(2);
+
+// Test4 Gagner en diagonale
+// placeForTest(5);
+// placeForTest(6);
+// placeForTest(4);
+// placeForTest(5);
+// placeForTest(4);
+// placeForTest(4);
+// placeForTest(3);
+// placeForTest(3);
+
+// Test5 Gagner en diagonale
+placeForTest(5);
+placeForTest(6);
+placeForTest(4);
+placeForTest(5);
+placeForTest(4);
+placeForTest(3);
+placeForTest(3);
 placeForTest(3);
 placeForTest(1);
-placeForTest(0);
-placeForTest(1);
+placeForTest(3);
 
 function startIA() {
     isIAON = !isIAON;
