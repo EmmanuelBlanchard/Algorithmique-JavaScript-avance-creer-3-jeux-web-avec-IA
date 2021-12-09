@@ -37,7 +37,7 @@ var jeu = {
             }
             var xAlea = Math.floor(Math.random() * tailleXMax);
             var yAlea = Math.floor(Math.random() * tailleYMax);
-            
+
             var isCaseVide = true;
             // Generer toutes les cases de notre bateau en fonction de la taille du bateau passer en paramètre de la fonction
             for(var i =1 ; i <= taille && isCaseVide; i++) {
@@ -87,13 +87,13 @@ var jeu = {
                 for(var j = 0 ; j < this.nombreColonnes ; j++) {
                     content += "<td class='border text-center' style='width:"+ratio+"px;height:"+ratio+"px'>";
                     if(this.grille[i][j] === 0) {
-                        content += "<button class='btn btn-secondary' onClick='jouer("+i+","+j+")'>Tirer</button>";
+                        content += "<button id='play' class='btn btn-secondary' onClick='jouer("+i+","+j+")'>Tirer</button>";
                     }
                     if(this.grille[i][j] === 1) {
                         content += "<img src='./images/J1.png' style='width:"+ratio+"px;height:"+ratio+"px'  class='bg-danger rounded-circle' />";
                     }
                     if(this.grille[i][j] === 2) {
-                        content += "<button class='btn btn-secondary' onClick='jouer("+i+","+j+")'>Tirer</button>";
+                        content += "<button id='play' class='btn btn-secondary' onClick='jouer("+i+","+j+")'>Tirer</button>";
                     }
                     if(this.grille[i][j] === 3) {
                         content += "<img src='./images/croix.png' style='width:"+ratio+"px;height:"+ratio+"px'/>";

@@ -80,3 +80,36 @@ function startGame() {
     if(nombreBateauxSaisie > 4) afficherAlert("Le nombre de bateaux doit être inférieur à 5",2);
     if(nombreBateauxSaisie >= 2 && nombreBateauxSaisie <= 4) initialisationTableau(nombreBateauxSaisie);
 }
+
+addEventListener("click", function(event) {
+    console.log(event);
+    var target = event.target;
+    if(target.id === "play") {
+        var image = "<img src='./images/explosion/explosion00.png' id='explosion' style='width:100px;height:100px;position:absolute;top:"+(event.clientY-50)+"px;left:"+(event.clientX-50)+"px' />";
+        var body = document.querySelector("body");
+        var element = document.createElement("p");
+        element.innerHTML = image;
+        body.appendChild(element);
+
+        imageExplosion(9);
+
+        function imageExplosion(time) {
+            var explosion = document.querySelector("#explosion");
+            if(time >=1) {
+                if(time===9) explosion.setAttribute("src","./images/explosion/explosion01.png");
+                if(time===8) explosion.setAttribute("src","./images/explosion/explosion02.png");
+                if(time===7) explosion.setAttribute("src","./images/explosion/explosion03.png");
+                if(time===6) explosion.setAttribute("src","./images/explosion/explosion04.png");
+                if(time===5) explosion.setAttribute("src","./images/explosion/explosion05.png");
+                if(time===4) explosion.setAttribute("src","./images/explosion/explosion06.png");
+                if(time===3) explosion.setAttribute("src","./images/explosion/explosion07.png");
+                if(time===2) explosion.setAttribute("src","./images/explosion/explosion08.png");
+                if(time===1) explosion.remove(this);
+
+                setTimeout(function() {
+                    imageExplosion(time-1);
+                },25);
+            }
+        }
+    }
+});
