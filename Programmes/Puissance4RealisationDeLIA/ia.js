@@ -31,8 +31,13 @@ var ia = {
         if(this.verificationGagner(ligne,colonne,2)) return 100;
         if(this.verificationGagner(ligne,colonne,1)) return 99;
 
-        return this.getPoidsBase(ligne,colonne);
-        
+        var poids = 0;
+        if(this.positionDefensive(ligne,colonne,1)) poids +=20; // Defense
+        if(this.positionDefensive(ligne,colonne,2)) poids +=20; // Attaque
+        poids += this.getPoidsBase(ligne,colonne);
+
+        return poids;
+
         // Vérifier si on peut gagner (IA) --> on retourne un poids de 100
         // Vérifier si on peut perdre (le joueur 1 peut gagner) --> on retourne un poids de 99
 
@@ -78,6 +83,20 @@ var ia = {
             break;
         }
         return poidsColonne * poidsLigne;
+    },
+
+    positionDefensive : function(ligne,colonne,joueur) {
+        var cpt = 1;
+        if(jeu.puissance4[ligne][colonne+1] === joueur) {
+            cpt++;
+            if(jeu.puissance4[ligne][colonne+2] === joueur && jeu.puissance4[ligne][colonne+3] === 0) cpt++;
+        }
+        if(jeu.puissance4[ligne][colonne-1] === joueur) {
+            cpt++;
+            if(jeu.puissance4[ligne][colonne-2] === joueur && jeu.puissance4[ligne][colonne-3] === 0) cpt++;      
+        }
+        
+        if(cpt > 2) return true;
     },
 
     verificationGagner : function(ligne,colonne,joueur) {

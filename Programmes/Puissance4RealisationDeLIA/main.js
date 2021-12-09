@@ -107,6 +107,13 @@ initialisationTableau();
 // placeForTest(3);
 // placeForTest(5);
 
+// Test Defendre 2 jetons sur la meme ligne 
+// placeForTest(1);
+// placeForTest(3);
+// placeForTest(2);
+// placeForTest(4);
+
+
 function startIA() {
     isIAON = !isIAON;
 }
