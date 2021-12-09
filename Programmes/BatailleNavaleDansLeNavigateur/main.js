@@ -2,13 +2,13 @@ const tour = document.querySelector("#tour");
 const alert = document.querySelector(".alert");
 const messageJoueur1 = document.querySelector("#joueur1");
 const messageJoueur2 = document.querySelector("#joueur2");
+var nombreBateauxSaisie = 0;
+
 var joueurEnCours = 1;
 var finJeu = false;
 
 var pointJoueur1 = 0;
 var pointJoueur2 = 0;
-
-initialisationTableau();
 
 function jouer(ligne,colonne) {
     jouerCase(ligne,colonne);
@@ -33,7 +33,7 @@ function jouerCase(ligne,colonne) {
     }
 }
 
-function initialisationTableau() {
+function initialisationTableau(nombreBateaux) {
     jeu.nombreCaseJoueur1 = 0;
     jeu.nombreCaseJoueur2 = 0;
     finJeu = false;
@@ -46,7 +46,7 @@ function initialisationTableau() {
     contentJoueur2 += pointJoueur2; 
     messageJoueur2.innerHTML = contentJoueur2;
 
-    jeu.initialisation();
+    jeu.initialisation(nombreBateaux);
     jeu.afficherGrille();
 }
 
@@ -54,11 +54,29 @@ function gererFinJeu() {
     finJeu = true;
     var contentAlert = "Partie terminée, le gagnant est : Joueur " + joueurEnCours + " <br />";
     contentAlert += '<button type="button" class="btn btn-secondary" onClick = initialisationTableau()>Recommencer</button>';
-    alert.innerHTML = contentAlert;
-    alert.classList.remove("d-none");
+    afficherAlert(contentAlert,1);
     if(joueurEnCours === 1) {
         pointJoueur1++;
     } else {
         pointJoueur2++;
     }
+}
+
+function afficherAlert(texte,type) {
+    if(type === 1) {
+        alert.classList.add("alert-success");
+        alert.classList.remove("alert-danger");
+    } else {
+        alert.classList.remove("alert-success");
+        alert.classList.add("alert-danger");
+    }
+    alert.innerHTML = texte;
+    alert.classList.remove("d-none");
+}
+
+function startGame() {
+    nombreBateauxSaisie = parseInt(document.querySelector("#nombreBateaux").value);
+    if(nombreBateauxSaisie < 2) afficherAlert("Le nombre de bateaux doit être supérieur à 2",2);
+    if(nombreBateauxSaisie > 4) afficherAlert("Le nombre de bateaux doit être inférieur à 5",2);
+    if(nombreBateauxSaisie >= 2 && nombreBateauxSaisie <= 4) initialisationTableau(nombreBateauxSaisie);
 }

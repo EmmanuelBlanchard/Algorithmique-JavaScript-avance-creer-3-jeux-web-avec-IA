@@ -6,16 +6,17 @@ var jeu = {
     nombreCaseJoueur1 : 0,
     nombreCaseJoueur2 : 0,
 
-    initialisation : function() {
+    initialisation : function(nombreBateaux) {
+        this.nombreColonnes = nombreBateaux * 2 +1;
+        this.nombreLignes = nombreBateaux * 2 +1;
         this.grille = toolbox.initialiserTableauVide(this.nombreLignes,this.nombreColonnes,0);
-        this.positionnerBateau(3,1);
-        this.nombreCaseJoueur1 += 3;
-        this.positionnerBateau(2,1);
-        this.nombreCaseJoueur1 += 2;
-        this.positionnerBateau(3,2);
-        this.nombreCaseJoueur2 += 3;
-        this.positionnerBateau(2,2);
-        this.nombreCaseJoueur2 += 2;
+
+        for(var i = 1 ; i <= nombreBateaux ; i++) {
+            this.positionnerBateau((i+1),1);
+            this.nombreCaseJoueur1 += i+1;
+            this.positionnerBateau((i+1),2);
+            this.nombreCaseJoueur2 += i+1;
+        }
     },
 
     positionnerBateau : function(taille,joueur) {
@@ -66,29 +67,33 @@ var jeu = {
     afficherGrille : function() {
         const jeu = document.querySelector("#jeu");
         jeu.innerHTML = "";
-        
+        var ratio = (100 - (10 * (this.nombreColonnes-5)+1));
+        //2 bateaux --> 5 colonnes --> 90 px
+        //3 bateaux --> 7 colonnes --> 70px
+        //4 bateaux --> 9 colonnes --> 50px
+
         var content = "<table>";
             for(var i = 0; i < this.nombreLignes ; i++) {
                 content += "<tr>";
                 for(var j = 0 ; j < this.nombreColonnes ; j++) {
-                    content += "<td class='border text-center' style='width:100px;height:100px'>";
+                    content += "<td class='border text-center' style='width:"+ratio+"px;height:"+ratio+"px'>";
                     if(this.grille[i][j] === 0) {
                         content += "<button class='btn btn-secondary' onClick='jouer("+i+","+j+")'>Tirer</button>";
                     }
                     if(this.grille[i][j] === 1) {
-                        content += "<img src='./images/J1.png' class='bg-danger rounded-circle' />";
+                        content += "<img src='./images/J1.png' style='width:"+ratio+"px;height:"+ratio+"px'  class='bg-danger rounded-circle' />";
                     }
                     if(this.grille[i][j] === 2) {
                         content += "<button class='btn btn-secondary' onClick='jouer("+i+","+j+")'>Tirer</button>";
                     }
                     if(this.grille[i][j] === 3) {
-                        content += "<img src='./images/croix.png' />";
+                        content += "<img src='./images/croix.png' style='width:"+ratio+"px;height:"+ratio+"px'/>";
                     }
                     if(this.grille[i][j] === 4) {
-                        content += "<img src='./images/croix.png' class='bg-danger rounded-circle' />";
+                        content += "<img src='./images/croix.png' class='bg-danger rounded-circle' style='width:"+ratio+"px;height:"+ratio+"px'/>";
                     } 
                     if(this.grille[i][j] === 5) {
-                        content += "<img src='./images/croix.png' class='bg-info rounded-circle' />";
+                        content += "<img src='./images/croix.png' class='bg-info rounded-circle' style='width:"+ratio+"px;height:"+ratio+"px'/>";
                     }
                     content += "</td>";
                 }
