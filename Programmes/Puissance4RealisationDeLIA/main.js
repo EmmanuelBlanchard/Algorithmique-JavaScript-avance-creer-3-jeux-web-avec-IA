@@ -114,20 +114,20 @@ initialisationTableau();
 // placeForTest(4);
 
 // Test Une IA trop forte pour moi
-placeForTest(0);
-placeForTest(1);
-placeForTest(2);
-placeForTest(4);
-placeForTest(3);
-placeForTest(3);
-placeForTest(5);
-placeForTest(2);
-placeForTest(4);
-placeForTest(4);
-placeForTest(1);
-placeForTest(4);
-placeForTest(3);
-placeForTest(3);
+// placeForTest(0);
+// placeForTest(1);
+// placeForTest(2);
+// placeForTest(4);
+// placeForTest(3);
+// placeForTest(3);
+// placeForTest(5);
+// placeForTest(2);
+// placeForTest(4);
+// placeForTest(4);
+// placeForTest(1);
+// placeForTest(4);
+// placeForTest(3);
+// placeForTest(3);
 
 function startIA() {
     isIAON = !isIAON;
