@@ -26,27 +26,24 @@ var ia = {
     },
 
     getPoidsCellule : function(ligne,colonne) {
-        if(ligne === -1) return 0; //la colonne est pleine --> le poids à renvoyer sera de 0
+        if(ligne === -1) return 0; // La colonne est pleine --> le poids à renvoyer sera de 0
 
+        // Vérifier si on peut gagner (IA) --> on retourne un poids de 100
         if(this.verificationGagner(ligne,colonne,2)) return 100;
+        // Vérifier si on peut perdre (le joueur 1 peut gagner) --> on retourne un poids de 99
         if(this.verificationGagner(ligne,colonne,1)) return 99;
+        // Eviter de faire un coup perdant
+        if(this.coupPerdant(ligne,colonne,2)) return 0;
 
         var poids = 0;
+        // Defendre (2 jetons adverse à coté --> le bloquer)
         if(this.positionDefensive(ligne,colonne,1)) poids +=20; // Defense
+        // Attaquer (2 jetons de l'IA à coté)
         if(this.positionDefensive(ligne,colonne,2)) poids +=20; // Attaque
+        // Additionner les poids
         poids += this.getPoidsBase(ligne,colonne);
 
         return poids;
-
-        // Vérifier si on peut gagner (IA) --> on retourne un poids de 100
-        // Vérifier si on peut perdre (le joueur 1 peut gagner) --> on retourne un poids de 99
-
-        // Autres cas 
-        // Eviter de faire un coup perdant
-        // Defendre (2 jetons adverse à coté --> le bloquer)
-        // Attaquer (2 jetons de l'IA à coté)
-        // Additionner les poids
-
     },
 
     getPoidsBase : function(ligne,colonne) {
@@ -186,5 +183,11 @@ var ia = {
             }
         }
         if(cpt>3) return true;
+    },
+
+    coupPerdant : function(ligne,colonne,joueur) {
+        if(ligne-1 > 0) {
+            if(this.verificationGagner(ligne-1,colonne,1)) return true;
+        }
     }
 }
