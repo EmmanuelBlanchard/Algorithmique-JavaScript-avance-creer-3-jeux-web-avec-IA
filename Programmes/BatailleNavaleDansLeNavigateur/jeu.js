@@ -25,10 +25,19 @@ var jeu = {
         // Terminer la création du bateau quand toutes les cases sont vides
         while(!positionTermine) {
             // Positionner notre bateau de manière aléatoire
-            var xAlea = Math.floor(Math.random() * (this.nombreLignes-(taille-1)));
-            var yAlea = Math.floor(Math.random() * (this.nombreColonnes-(taille-1)));
+            var tailleXMax = 0;
+            var tailleYMax = 0;
             var isHorizontal = Math.floor(Math.random() * 2);
-    
+            if(isHorizontal) {
+                tailleXMax = this.nombreLignes -(taille-1);
+                tailleYMax = this.nombreColonnes;
+            } else {
+                tailleXMax = this.nombreLignes;
+                tailleYMax = this.nombreColonnes - (taille-1);
+            }
+            var xAlea = Math.floor(Math.random() * tailleXMax);
+            var yAlea = Math.floor(Math.random() * tailleYMax);
+            
             var isCaseVide = true;
             // Generer toutes les cases de notre bateau en fonction de la taille du bateau passer en paramètre de la fonction
             for(var i =1 ; i <= taille && isCaseVide; i++) {
