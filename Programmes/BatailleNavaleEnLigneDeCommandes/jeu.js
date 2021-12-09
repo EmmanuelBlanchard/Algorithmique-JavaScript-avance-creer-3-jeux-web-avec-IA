@@ -26,14 +26,14 @@ var jeu = {
         // Terminer la création du bateau quand toutes les cases sont vides
         while(!positionTermine) {
             // Positionner notre bateau de manière aléatoire
-            var xAlea = Math.floor(Math.random() * this.nombreLignes-(taille-1));
-            var yAlea = Math.floor(Math.random() * this.nombreColonnes-(taille-1));
+            var xAlea = Math.floor(Math.random() * (this.nombreLignes-(taille-1)));
+            var yAlea = Math.floor(Math.random() * (this.nombreColonnes-(taille-1)));
             var isHorizontal = Math.floor(Math.random() * 2);
     
             var isCaseVide = true;
             // Generer toutes les cases de notre bateau en fonction de la taille du bateau passer en paramètre de la fonction
             for(var i =1 ; i <= taille && isCaseVide; i++) {
-                bateau["case"+i] = this.getCreationBateau(xAlea, yAlea, isHorizontal, i);
+                bateau["case"+i] = this.getCaseCreationBateau(xAlea, yAlea, isHorizontal, i);
                 // Si la case n'est pas vide, on sort de la boucle et recommence le cheminement : trouver une position x et y
                 isCaseVide = this.verificationCaseVide(bateau["case"+i]);
             }
@@ -42,16 +42,27 @@ var jeu = {
         this.enregistrerGrille(bateau,joueur);
     },
     
-    getCreationBateau : function(x,y,isHorizontal,numeroCase) {
-
+    getCaseCreationBateau : function(xAlea,yAlea,isHorizontal,numeroCase) {
+        var cellule = {};
+        if(isHorizontal) {
+            cellule.x = xAlea + (numeroCase-1);
+            cellule.y = yAlea;
+        } else {
+            cellule.x = xAlea;
+            cellule.y = yAlea + (numeroCase-1);
+        }
+        return cellule;
     },
-    
-    verificationCaseVide : function(caseBateau) {
 
+    verificationCaseVide : function(caseBateau) {
+        if(this.grille[caseBateau.x][caseBateau.y] === 0) return true;
+        return false;
     },
 
     enregistrerGrille : function (bateau,joueur) {
-
+        for(var cellule in bateau) {
+            this.grille[bateau[cellule].x][bateau[cellule].y] = joueur;
+        }
     },
 
     afficherGrille : function() {
