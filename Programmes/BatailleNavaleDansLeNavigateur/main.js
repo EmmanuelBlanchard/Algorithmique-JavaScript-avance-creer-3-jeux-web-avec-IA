@@ -12,6 +12,8 @@ initialisationTableau();
 
 function jouer(ligne,colonne) {
     jouerCase(ligne,colonne);
+    var celluleIA = ia.getCellule();
+    jouerCase(celluleIA.ligne,celluleIA.colonne)
 }
 
 function jouerCase(ligne,colonne) {

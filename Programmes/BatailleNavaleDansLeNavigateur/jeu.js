@@ -76,12 +76,10 @@ var jeu = {
                         content += "<button class='btn btn-secondary' onClick='jouer("+i+","+j+")'>Tirer</button>";
                     }
                     if(this.grille[i][j] === 1) {
-                        content += "<button class='btn btn-secondary' onClick='jouer("+i+","+j+")'>Tirer</button>";
                         content += "<img src='./images/J1.png' class='bg-danger rounded-circle' />";
                     }
                     if(this.grille[i][j] === 2) {
                         content += "<button class='btn btn-secondary' onClick='jouer("+i+","+j+")'>Tirer</button>";
-                        content += "<img src='./images/J2.png' class='bg-info rounded-circle' />";
                     }
                     if(this.grille[i][j] === 3) {
                         content += "<img src='./images/croix.png' />";
