@@ -53,7 +53,8 @@ function initialisationTableau(nombreBateaux) {
 function gererFinJeu() {
     finJeu = true;
     var contentAlert = "Partie terminée, le gagnant est : Joueur " + joueurEnCours + " <br />";
-    contentAlert += '<button type="button" class="btn btn-secondary" onClick = initialisationTableau()>Recommencer</button>';
+    contentAlert += '<button type="button" class="btn btn-secondary" onClick = initialisationTableau('+nombreBateauxSaisie+')>Recommencer</button>';
+
     afficherAlert(contentAlert,1);
     if(joueurEnCours === 1) {
         pointJoueur1++;
