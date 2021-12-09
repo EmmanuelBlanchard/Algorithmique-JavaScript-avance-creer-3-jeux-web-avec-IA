@@ -76,6 +76,8 @@ var jeu = {
                     texte += "x";
                 } else if(this.grille[i][j] === 2 ) {
                     texte += "o";
+                } else if(this.grille[i][j] === 3 ) {
+                    texte += "d";
                 }
                 texte += " |";
             }
@@ -84,7 +86,10 @@ var jeu = {
     },
 
     jouerCase : function(ligne,colonne) {
-
-    },
+        if(this.grille[ligne][colonne] === 1) this.nombreCaseJoueur1--;
+        if(this.grille[ligne][colonne] === 2) this.nombreCaseJoueur2--;
+        this.grille[ligne][colonne] = 3;
+        if(this.nombreCaseJoueur1 <= 0 || this.nombreCaseJoueur2 <= 0) return true;
+    }
 }
 module.exports = jeu;
