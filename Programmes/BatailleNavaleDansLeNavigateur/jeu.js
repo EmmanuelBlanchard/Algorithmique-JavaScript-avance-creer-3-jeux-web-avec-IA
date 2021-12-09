@@ -112,6 +112,9 @@ var jeu = {
             this.nombreCaseJoueur2--;
             this.grille[ligne][colonne] = 5;
         }
+    },
+
+    verificationFinJeu : function() {
         if(this.nombreCaseJoueur1 <= 0 || this.nombreCaseJoueur2 <= 0) return true;
     }
 }
