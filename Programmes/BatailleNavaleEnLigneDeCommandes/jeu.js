@@ -21,6 +21,36 @@ var jeu = {
     },
 
     positionnerBateau : function(taille,joueur) {
+        var bateau = {};
+        var positionTermine = false;
+        // Terminer la création du bateau quand toutes les cases sont vides
+        while(!positionTermine) {
+            // Positionner notre bateau de manière aléatoire
+            var xAlea = Math.floor(Math.random() * this.nombreLignes-(taille-1));
+            var yAlea = Math.floor(Math.random() * this.nombreColonnes-(taille-1));
+            var isHorizontal = Math.floor(Math.random() * 2);
+    
+            var isCaseVide = true;
+            // Generer toutes les cases de notre bateau en fonction de la taille du bateau passer en paramètre de la fonction
+            for(var i =1 ; i <= taille && isCaseVide; i++) {
+                bateau["case"+i] = this.getCreationBateau(xAlea, yAlea, isHorizontal, i);
+                // Si la case n'est pas vide, on sort de la boucle et recommence le cheminement : trouver une position x et y
+                isCaseVide = this.verificationCaseVide(bateau["case"+i]);
+            }
+            if(isCaseVide) positionTermine = true;
+        }
+        this.enregistrerGrille(bateau,joueur);
+    },
+    
+    getCreationBateau : function(x,y,isHorizontal,numeroCase) {
+
+    },
+    
+    verificationCaseVide : function(caseBateau) {
+
+    },
+
+    enregistrerGrille : function (bateau,joueur) {
 
     },
 
