@@ -12,8 +12,8 @@ var ia = {
                 tabMeilleureColonne.push(i);
             }
         }
-        // console.log(tabColonne);
-        console.log(tabMeilleureColonne);
+        console.log(tabColonne);
+        // console.log(tabMeilleureColonne);
         return tabMeilleureColonne[Math.floor(Math.random() * tabMeilleureColonne.length)];
     },
 
@@ -31,7 +31,7 @@ var ia = {
         if(this.verificationGagner(ligne,colonne,2)) return 100;
         if(this.verificationGagner(ligne,colonne,1)) return 99;
 
-        return 1;
+        return this.getPoidsBase(ligne,colonne);
         
         // Vérifier si on peut gagner (IA) --> on retourne un poids de 100
         // Vérifier si on peut perdre (le joueur 1 peut gagner) --> on retourne un poids de 99
@@ -42,6 +42,42 @@ var ia = {
         // Attaquer (2 jetons de l'IA à coté)
         // Additionner les poids
 
+    },
+
+    getPoidsBase : function(ligne,colonne) {
+        var poidsLigne = 0;
+        var poidsColonne = 0;
+        switch(ligne) {
+            case 0 : poidsLigne = 1;
+            break;
+            case 1 : poidsLigne = 2;
+            break;
+            case 2 : poidsLigne = 3;
+            break;
+            case 3 : poidsLigne = 4;
+            break;
+            case 4 : poidsLigne = 3;
+            break;
+            case 5 : poidsLigne = 2;
+            break;
+        }
+        switch(colonne) {
+            case 0 : poidsColonne = 1;
+            break;
+            case 1 : poidsColonne = 2;
+            break;
+            case 2 : poidsColonne = 3;
+            break;
+            case 3 : poidsColonne = 3;
+            break;
+            case 4 : poidsColonne = 3;
+            break;
+            case 5 : poidsColonne = 2;
+            break;
+            case 6 : poidsColonne = 1;
+            break;
+        }
+        return poidsColonne * poidsLigne;
     },
 
     verificationGagner : function(ligne,colonne,joueur) {
