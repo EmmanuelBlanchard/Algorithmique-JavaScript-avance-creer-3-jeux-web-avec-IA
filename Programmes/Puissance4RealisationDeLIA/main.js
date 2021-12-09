@@ -76,16 +76,36 @@ initialisationTableau();
 // placeForTest(3);
 
 // Test5 Gagner en diagonale
-placeForTest(5);
-placeForTest(6);
-placeForTest(4);
-placeForTest(5);
-placeForTest(4);
-placeForTest(3);
-placeForTest(3);
-placeForTest(3);
-placeForTest(1);
-placeForTest(3);
+// placeForTest(5);
+// placeForTest(6);
+// placeForTest(4);
+// placeForTest(5);
+// placeForTest(4);
+// placeForTest(3);
+// placeForTest(3);
+// placeForTest(3);
+// placeForTest(1);
+// placeForTest(3);
+
+// Test Eviter de perdre !
+// placeForTest(0);
+// placeForTest(0);
+// placeForTest(1);
+// placeForTest(1);
+
+// Test2 Eviter de perdre !
+// placeForTest(0);
+// placeForTest(1);
+// placeForTest(1);
+// placeForTest(2);
+// placeForTest(2);
+// placeForTest(3);
+// placeForTest(2);
+// placeForTest(3);
+// placeForTest(4);
+// placeForTest(4);
+// placeForTest(3);
+// placeForTest(5);
 
 function startIA() {
     isIAON = !isIAON;

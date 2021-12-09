@@ -12,7 +12,7 @@ var ia = {
                 tabMeilleureColonne.push(i);
             }
         }
-        console.log(tabColonne);
+        // console.log(tabColonne);
         console.log(tabMeilleureColonne);
         return tabMeilleureColonne[Math.floor(Math.random() * tabMeilleureColonne.length)];
     },
@@ -29,6 +29,7 @@ var ia = {
         if(ligne === -1) return 0; //la colonne est pleine --> le poids à renvoyer sera de 0
 
         if(this.verificationGagner(ligne,colonne,2)) return 100;
+        if(this.verificationGagner(ligne,colonne,1)) return 99;
 
         return 1;
         
