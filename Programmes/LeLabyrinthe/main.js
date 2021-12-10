@@ -1,9 +1,11 @@
+const monJeu = document.querySelector("#jeu");
+const alert = document.querySelector(".alert");
+
 var nombreLignes = 4;
 var nombreColonnes = 4;
 
 var positionPlayer = [0,0];
-
-const monJeu = document.querySelector("#jeu");
+var niveauEnCours = 1;
 
 var ligne1 = [creationCellule(5),creationCellule(10),creationCellule(1),creationCellule(7)];
 var ligne2 = [creationCellule(5),creationCellule(14),creationCellule(5),creationCellule(5)];
@@ -101,6 +103,19 @@ addEventListener("keyup", function(event) {
 
 function verificationFinJeu() {
     if(positionPlayer[0] === nombreLignes-1 && positionPlayer[1] === nombreColonnes-1) {
-        alert("Gagné ! ");
+        var content = "";
+        if(niveauEnCours < 1) {
+            content += "<p>Bien joué ! Passer au niveau : " + (niveauEnCours+1) + " ?</p>";
+            content += "<button class='btn btn-primary' onClick='lancerNiveauSuivant()'> Suivant </button>";
+        } else {
+            content += "Vous avez gagné ! ";
+        }
+      
+        alert.innerHTML = content;
+        alert.classList.remove("d-none");
     }
+}
+
+function lancerNiveauSuivant() {
+    
 }
