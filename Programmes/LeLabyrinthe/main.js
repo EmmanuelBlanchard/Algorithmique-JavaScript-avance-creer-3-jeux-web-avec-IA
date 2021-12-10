@@ -5,15 +5,11 @@ var nombreLignes = 4;
 var nombreColonnes = 4;
 
 var positionPlayer = [0,0];
-var niveauEnCours = 1;
+var niveauEnCours = 0;
 
-var ligne1 = [creationCellule(5),creationCellule(10),creationCellule(1),creationCellule(7)];
-var ligne2 = [creationCellule(5),creationCellule(14),creationCellule(5),creationCellule(5)];
-var ligne3 = [creationCellule(4),creationCellule(1),creationCellule(8),creationCellule(5)];
-var ligne4 = [creationCellule(14),creationCellule(9),creationCellule(12),creationCellule(9)];
-var tableauJeu = [ligne1,ligne2,ligne3,ligne4];
+var tableauJeu = null;
 
-afficherLabyrinthe(tableauJeu);
+lancerNiveauSuivant();
 
 function creationCellule(image) {
     var cellule = {
@@ -117,5 +113,21 @@ function verificationFinJeu() {
 }
 
 function lancerNiveauSuivant() {
-    
+    niveauEnCours++;
+    alert.classList.add("d-none");
+    nombreLignes = 4;
+    nombreColonnes = 4;
+    positionPlayer = [0,0];
+    tableauJeu = loadLevel();
+
+    afficherLabyrinthe(tableauJeu);
+}
+
+function loadLevel() {
+    var ligne1 = [creationCellule(5),creationCellule(10),creationCellule(1),creationCellule(7)];
+    var ligne2 = [creationCellule(5),creationCellule(14),creationCellule(5),creationCellule(5)];
+    var ligne3 = [creationCellule(4),creationCellule(1),creationCellule(8),creationCellule(5)];
+    var ligne4 = [creationCellule(14),creationCellule(9),creationCellule(12),creationCellule(9)];
+    var tableau = [ligne1,ligne2,ligne3,ligne4];
+    return tableau;
 }
