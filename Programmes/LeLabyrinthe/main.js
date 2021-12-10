@@ -1,5 +1,6 @@
 const monJeu = document.querySelector("#jeu");
 const alert = document.querySelector(".alert");
+var sizeImage = 50;
 
 var nombreLignes = 4;
 var nombreColonnes = 4;
@@ -46,16 +47,18 @@ function afficherLabyrinthe(tableauJeu) {
         content += "<tr>";
         for (var j = 0 ; j < tableauJeu[i].length;j++) {
             content += "<td>";
-                content += "<img src='images/"+tableauJeu[i][j].image+".png' />";
+                content += "<img src='images/"+tableauJeu[i][j].image+".png' style='width:"+sizeImage+"px;height:"+sizeImage+"px;' />";
+
                 if(i === nombreLignes -1 && j === nombreColonnes -1) {
-                    var pandaLigne = 25 + 100 * i;
-                    var pandaColonne = 25 + 100 * j;
-                    content += "<img src='images/panda.png' style='width:50px;height:50px;position:absolute;left:"+pandaColonne+"px;top:"+pandaLigne+"px'/>";
+                    var pandaLigne = sizeImage/4 + sizeImage * i;
+                    var pandaColonne = sizeImage/4 + sizeImage * j;
+                    content += "<img src='images/panda.png' style='width:"+(sizeImage/2)+"px;height:"+(sizeImage/2)+"px;position:absolute;left:"+pandaColonne+"px;top:"+pandaLigne+"px'/>";
+
                 }
                 if(i === positionPlayer[0] && j === positionPlayer[1]) {
-                    var oursLigne = 25 + 100 * positionPlayer[0];
-                    var oursColonne = 25 + 100 * positionPlayer[1];
-                    content += "<img src='images/bear.png' style='width:50px;height:50px;position:absolute;left:"+oursColonne+"px;top:"+oursLigne+"px'/>";
+                    var oursLigne = sizeImage/4 + sizeImage * positionPlayer[0];
+                    var oursColonne = sizeImage/4 + sizeImage * positionPlayer[1];
+                    content += "<img src='images/bear.png' style='width:"+(sizeImage/2)+"px;height:"+(sizeImage/2)+"px;position:absolute;left:"+oursColonne+"px;top:"+oursLigne+"px'/>";
                 }
             content += "</td>";
         }
