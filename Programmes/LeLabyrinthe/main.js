@@ -38,3 +38,23 @@ function afficherLabyrinthe(tableauJeu) {
     content +="</table>";
     monJeu.innerHTML = content;
 }
+
+
+addEventListener("keyup", function(event) {
+    var lignePlayer = positionPlayer[0];
+    var colonnePlayer = positionPlayer[1];
+    if(event.keyCode === 37 && colonnePlayer > 0) { //gauche
+        colonnePlayer--;
+    }
+    if(event.keyCode === 38 && lignePlayer > 0) { // haut
+        lignePlayer--;
+    }
+    if(event.keyCode === 39 && colonnePlayer < nombreColonnes - 1) { // droite
+        colonnePlayer++;
+    }
+    if(event.keyCode === 40 && lignePlayer < nombreLignes - 1) { // bas
+        lignePlayer++;
+    }
+    positionPlayer = [lignePlayer,colonnePlayer];
+    afficherLabyrinthe(tableauJeu);
+});
