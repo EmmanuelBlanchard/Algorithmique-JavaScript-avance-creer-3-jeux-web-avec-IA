@@ -100,7 +100,7 @@ addEventListener("keyup", function(event) {
 function verificationFinJeu() {
     if(positionPlayer[0] === nombreLignes-1 && positionPlayer[1] === nombreColonnes-1) {
         var content = "";
-        if(niveauEnCours < 1) {
+        if(niveauEnCours < levels.nombreNiveau) {
             content += "<p>Bien joué ! Passer au niveau : " + (niveauEnCours+1) + " ?</p>";
             content += "<button class='btn btn-primary' onClick='lancerNiveauSuivant()'> Suivant </button>";
         } else {
@@ -115,8 +115,8 @@ function verificationFinJeu() {
 function lancerNiveauSuivant() {
     niveauEnCours++;
     alert.classList.add("d-none");
-    nombreLignes = 4;
-    nombreColonnes = 4;
+    nombreLignes = levels["level"+niveauEnCours].nombreLignes;
+    nombreColonnes = levels["level"+niveauEnCours].nombreColonnes;
     positionPlayer = [0,0];
     tableauJeu = loadLevel();
 
@@ -124,10 +124,15 @@ function lancerNiveauSuivant() {
 }
 
 function loadLevel() {
-    var ligne1 = [creationCellule(5),creationCellule(10),creationCellule(1),creationCellule(7)];
-    var ligne2 = [creationCellule(5),creationCellule(14),creationCellule(5),creationCellule(5)];
-    var ligne3 = [creationCellule(4),creationCellule(1),creationCellule(8),creationCellule(5)];
-    var ligne4 = [creationCellule(14),creationCellule(9),creationCellule(12),creationCellule(9)];
-    var tableau = [ligne1,ligne2,ligne3,ligne4];
+    var tableau = [];
+
+    for(var i = 1 ; i <= levels["level"+niveauEnCours].nombreLignes;i++) {
+        var ligne = [];
+        for(var j = 1 ; j <= levels["level"+niveauEnCours].nombreColonnes; j++) {
+            var valeur = levels["level"+niveauEnCours]["ligne"+i]["case"+j];
+            ligne.push(creationCellule(valeur));
+        }
+        tableau.push(ligne);
+    }
     return tableau;
 }
