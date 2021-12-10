@@ -148,6 +148,8 @@ function loadLevel() {
     var tableau = [];
     isIAON = false;
     finJeu = false;
+    // Reinitialiser le tableau
+    ia.positionsPasse = new Array();
     iaCheckBox.removeAttribute("disabled");
     iaCheckBox.checked = false;
 

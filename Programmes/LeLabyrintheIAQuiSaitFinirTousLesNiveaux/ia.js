@@ -7,7 +7,7 @@ var ia = {
             deplacement();
             setTimeout(function() {
                 ia.startIA();
-            }, 2000);
+            }, 100);
         }
     },
 
@@ -15,7 +15,6 @@ var ia = {
         var possibilites = this.getPossibilites();
         positionPlayer = this.getBestPossibilite(possibilites);
         this.savePositionPlayed(positionPlayer);
-        console.log(this.positionsPasse);
     },
 
     getPossibilites : function() {
@@ -36,8 +35,27 @@ var ia = {
     },
 
     getBestPossibilite: function(possibilites) {
-        var randomPossibilite = Math.floor(Math.random() * possibilites.length);
-        var positionToPlay = possibilites[randomPossibilite];
+        // var bestPos = possibilites[0];
+        var bestPosition = possibilites[0];
+        // var tabBestPos = [possibilites[0]];
+        var tabBestPositions = [possibilites[0]];
+        // var bestPosPoids = this.getPoidsPosition(possibilites[0]);
+        var bestPositionPoids = this.getPoidsPosition(possibilites[0]);
+
+        for(var i = 1; i < possibilites.length ; i++) {
+            var poids = this.getPoidsPosition(possibilites[i]);
+            if(poids < bestPositionPoids ) {
+                bestPositionPoids = poids;
+                bestPosition = possibilites[i];
+                tabBestPositions = new Array();
+                tabBestPositions.push(bestPosition);
+            } else if (poids === bestPositionPoids) {
+                tabBestPositions.push(possibilites[i]);
+            }
+        }
+
+        var randomPossibilite = Math.floor(Math.random() * tabBestPositions.length);
+        var positionToPlay = tabBestPositions[randomPossibilite];
         return positionToPlay;
     },
 
@@ -59,5 +77,14 @@ var ia = {
             }
         }
         return -1;
+    },
+
+    getPoidsPosition : function(position) {
+        for (var i = 0; i < this.positionsPasse.length ; i++) {
+            if(this.positionsPasse[i][0] === position[0] && this.positionsPasse[i][1] === position[1]) {
+                return this.positionsPasse[i][2];
+            }
+        }
+        return 0;
     }
 }
