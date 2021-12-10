@@ -148,8 +148,10 @@ function loadLevel() {
     var tableau = [];
     isIAON = false;
     finJeu = false;
-    // Reinitialiser le tableau
+    // Reinitialiser le tableau positionsPasse
     ia.positionsPasse = new Array();
+    // Reinitialiser le tableau positionsBloque
+    ia.positionsBloque = new Array();
     iaCheckBox.removeAttribute("disabled");
     iaCheckBox.checked = false;
 

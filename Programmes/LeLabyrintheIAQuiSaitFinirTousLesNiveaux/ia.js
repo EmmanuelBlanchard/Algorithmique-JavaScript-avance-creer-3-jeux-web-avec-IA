@@ -1,5 +1,6 @@
 var ia = {
     positionsPasse : [],
+    positionsBloque : [],
 
     startIA : function() {
         if(!finJeu){
@@ -13,6 +14,9 @@ var ia = {
 
     deplacerPlayer: function() {
         var possibilites = this.getPossibilites();
+        if(possibilites.length === 1) {
+            this.positionsBloque.push(positionPlayer);
+        }
         positionPlayer = this.getBestPossibilite(possibilites);
         this.savePositionPlayed(positionPlayer);
     },
@@ -20,26 +24,31 @@ var ia = {
     getPossibilites : function() {
         var possibilites = [];
         if(getCellule(positionPlayer[0],positionPlayer[1]).left) {
-            possibilites.push([positionPlayer[0],positionPlayer[1]-1]);
+            if(!this.isPositionBloque([positionPlayer[0],positionPlayer[1]-1])) {
+                possibilites.push([positionPlayer[0],positionPlayer[1]-1]);
+            }
         }
         if(getCellule(positionPlayer[0],positionPlayer[1]).right) {
-            possibilites.push([positionPlayer[0],positionPlayer[1]+1]);
+            if(!this.isPositionBloque([positionPlayer[0],positionPlayer[1]+1])) {
+                possibilites.push([positionPlayer[0],positionPlayer[1]+1]);
+            }
         }
         if(getCellule(positionPlayer[0],positionPlayer[1]).top) {
-            possibilites.push([positionPlayer[0]-1,positionPlayer[1]]);
+            if(!this.isPositionBloque([positionPlayer[0]-1,positionPlayer[1]])) {
+                possibilites.push([positionPlayer[0]-1,positionPlayer[1]]);
+            }
         }
         if(getCellule(positionPlayer[0],positionPlayer[1]).bottom) {
-            possibilites.push([positionPlayer[0]+1,positionPlayer[1]]);
+            if(!this.isPositionBloque([positionPlayer[0]+1,positionPlayer[1]])) {
+                possibilites.push([positionPlayer[0]+1,positionPlayer[1]]);
+            }
         }
         return possibilites;
     },
 
     getBestPossibilite: function(possibilites) {
-        // var bestPos = possibilites[0];
         var bestPosition = possibilites[0];
-        // var tabBestPos = [possibilites[0]];
         var tabBestPositions = [possibilites[0]];
-        // var bestPosPoids = this.getPoidsPosition(possibilites[0]);
         var bestPositionPoids = this.getPoidsPosition(possibilites[0]);
 
         for(var i = 1; i < possibilites.length ; i++) {
@@ -86,5 +95,14 @@ var ia = {
             }
         }
         return 0;
+    },
+
+    isPositionBloque : function(position) {
+        for(var i = 0; i < this.positionsBloque.length ; i++) {
+            if(this.positionsBloque[i][0] === position[0] && this.positionsBloque[i][1] === position[1]) {
+                return true;
+            }
+        }
+        return false;
     }
 }
