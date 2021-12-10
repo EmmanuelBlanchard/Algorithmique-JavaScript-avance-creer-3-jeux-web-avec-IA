@@ -1,6 +1,8 @@
 const monJeu = document.querySelector("#jeu");
 const alert = document.querySelector(".alert");
-var sizeImage = 50;
+const iaCheckBox = document.querySelector("#IA");
+
+var sizeImage = 150;
 
 var nombreLignes = 4;
 var nombreColonnes = 4;
@@ -10,8 +12,16 @@ var niveauEnCours = 0;
 
 var tableauJeu = null;
 
+var finJeu = false;
+var isIAON = false;
+
 lancerNiveauSuivant();
-ia.startIA();
+
+function startIA() {
+    iaCheckBox.setAttribute("disabled","disabled");
+    isIAON = true;
+    ia.startIA();
+}
 
 function creationCellule(image) {
     var cellule = {
@@ -73,32 +83,34 @@ function getCellule(i,j) {
     return tableauJeu[i][j];
 }
 
-// addEventListener("keyup", function(event) {
-//     var lignePlayer = positionPlayer[0];
-//     var colonnePlayer = positionPlayer[1];
-//     if(event.keyCode === 37 && colonnePlayer > 0) { //gauche
-//         if(getCellule(positionPlayer[0],positionPlayer[1]).left) {
-//             colonnePlayer--;
-//         }
-//     }
-//     if(event.keyCode === 38 && lignePlayer > 0) { // haut
-//         if(getCellule(positionPlayer[0],positionPlayer[1]).top) {
-//             lignePlayer--;
-//         }
-//     }
-//     if(event.keyCode === 39 && colonnePlayer < nombreColonnes - 1) { // droite
-//         if(getCellule(positionPlayer[0],positionPlayer[1]).right) {
-//             colonnePlayer++;
-//         }
-//     }
-//     if(event.keyCode === 40 && lignePlayer < nombreLignes - 1) { // bas
-//         if(getCellule(positionPlayer[0],positionPlayer[1]).bottom) {
-//             lignePlayer++;
-//         }
-//     }
-//     positionPlayer = [lignePlayer,colonnePlayer];
-//     deplacement();
-// });
+addEventListener("keyup", function(event) {
+    if(!isIAON) {
+        var lignePlayer = positionPlayer[0];
+        var colonnePlayer = positionPlayer[1];
+        if(event.keyCode === 37 && colonnePlayer > 0) { //gauche
+            if(getCellule(positionPlayer[0],positionPlayer[1]).left) {
+                colonnePlayer--;
+            }
+        }
+        if(event.keyCode === 38 && lignePlayer > 0) { // haut
+            if(getCellule(positionPlayer[0],positionPlayer[1]).top) {
+                lignePlayer--;
+            }
+        }
+        if(event.keyCode === 39 && colonnePlayer < nombreColonnes - 1) { // droite
+            if(getCellule(positionPlayer[0],positionPlayer[1]).right) {
+                colonnePlayer++;
+            }
+        }
+        if(event.keyCode === 40 && lignePlayer < nombreLignes - 1) { // bas
+            if(getCellule(positionPlayer[0],positionPlayer[1]).bottom) {
+                lignePlayer++;
+            }
+        }
+        positionPlayer = [lignePlayer,colonnePlayer];
+        deplacement();
+    }
+});
 
 function deplacement() {
     afficherLabyrinthe(tableauJeu);
@@ -117,6 +129,7 @@ function verificationFinJeu() {
       
         alert.innerHTML = content;
         alert.classList.remove("d-none");
+        finJeu = true;
     }
 }
 
@@ -133,6 +146,10 @@ function lancerNiveauSuivant() {
 
 function loadLevel() {
     var tableau = [];
+    isIAON = false;
+    finJeu = false;
+    iaCheckBox.removeAttribute("disabled");
+    iaCheckBox.checked = false;
 
     for(var i = 1 ; i <= levels["level"+niveauEnCours].nombreLignes;i++) {
         var ligne = [];

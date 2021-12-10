@@ -1,15 +1,16 @@
 var ia = {
     startIA : function() {
-        this.deplacerPlayer();
-        deplacement();
-        setTimeout(function() {
-            ia.startIA();
-        }, 300);
+        if(!finJeu){
+            this.deplacerPlayer();
+            deplacement();
+            setTimeout(function() {
+                ia.startIA();
+            }, 300);
+        }
     },
 
     deplacerPlayer: function() {
         var possibilites = this.getPossibilites();
-        console.log(possibilites);
         positionPlayer = this.getBestPossibilite(possibilites);
     },
 
