@@ -10,6 +10,12 @@
 
 </head>
 <body>
+    <label for="" class="m-3">Nombre de lignes : </label>
+    <input type="number" id="nombreLignes" class="m-3">
+    <label for="" class="m-3">Nombre de colonnes : </label>
+    <input type="number" id="nombreColonnes" class="m-3">
+    <button class='btn btn-primary' onClick='createLabyrinthe()'>Créer </button>
+
     <table id="jeu"></table>
     <div class="alert alert-success d-none mt-2 ml-2" role="alert"></div>
     <button class='btn btn-primary m-2' onClick='save()'>Sauvegarder</button>

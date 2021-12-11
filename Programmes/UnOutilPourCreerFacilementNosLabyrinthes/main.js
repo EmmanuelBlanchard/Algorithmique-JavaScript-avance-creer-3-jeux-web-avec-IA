@@ -23,6 +23,21 @@ function afficherGrille() {
     monJeu.innerHTML = content;
 }
 
+function createLabyrinthe() {
+    const nombreLignes = parseInt(document.querySelector("#nombreLignes").value);
+    const nombreColonnes = parseInt(document.querySelector("#nombreColonnes").value);
+    var tableau= [];
+    for(var i = 0 ; i < nombreLignes ; i++) {
+        var ligne=[];
+        for(var j = 0 ; j < nombreColonnes ; j++) {
+            ligne.push(0);
+        }
+        tableau.push(ligne);
+    }
+    tableauJeu = tableau;
+    afficherGrille();
+}
+
 function changeImage(ligne,colonne,add) {
     if(add){
         if(tableauJeu[ligne][colonne] === 15) tableauJeu[ligne][colonne] = 0;
