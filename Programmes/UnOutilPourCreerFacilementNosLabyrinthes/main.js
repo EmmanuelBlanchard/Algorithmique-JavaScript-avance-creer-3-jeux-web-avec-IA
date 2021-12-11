@@ -49,3 +49,12 @@ monJeu.addEventListener("contextmenu", function() {
     var colonne = id.substring((idTiret+1), id.length);
     changeImage(ligne,colonne,false);
 });
+
+function save() {
+    var content = "Coucou";
+    var filename = "level.js";
+    var blob = new Blob([content], {
+        type : "text/plain;charset=utf-8"
+    });
+    saveAs(blob, filename);
+}
