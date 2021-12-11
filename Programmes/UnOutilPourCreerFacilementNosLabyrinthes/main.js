@@ -51,10 +51,25 @@ monJeu.addEventListener("contextmenu", function() {
 });
 
 function save() {
-    var content = "Coucou";
+    var content = getContent();
     var filename = "level.js";
     var blob = new Blob([content], {
         type : "text/plain;charset=utf-8"
     });
     saveAs(blob, filename);
+}
+
+function getContent() {
+    var content = "level : {";
+    content += "nombreLignes : " + tableauJeu.length + ", ";
+    content += "nombreColonnes : " + tableauJeu[0].length+ ", ";
+    for(var i = 0 ; i < tableauJeu.length ; i++) {
+        content += "ligne"+(i+1) + ": {";
+        for(var j = 0 ; j < tableauJeu[i].length ; j++ ) {
+            content += "case"+(j+1) + ": "+ tableauJeu[i][j] + ", ";
+        }
+        content += "},";
+    }
+    content += "}";
+    return content;
 }
